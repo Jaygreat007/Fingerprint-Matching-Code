@@ -20,7 +20,7 @@ for file in [file for file in os.listdir("SOCOFing/Real")][:1000]:
     keypoints_1, descriptors_1 = sift.detectAndCompute(sample, None)
     keypoints_2, descriptors_2 = sift.detectAndCompute(fingerprint_image, None)
 
-    # Check if descriptors are found
+    
     if descriptors_1 is not None and descriptors_2 is not None:
         matches = cv2.FlannBasedMatcher({'algorithm': 1, 'trees': 10}, {}).knnMatch(descriptors_1, descriptors_2, k=2)
 
@@ -41,7 +41,7 @@ for file in [file for file in os.listdir("SOCOFing/Real")][:1000]:
             print("Best MATCH: " + filename)
             print("SCORE: " + str(best_score))
 
-# Display the best match outside the loop
+
 if image is not None:
     result = cv2.drawMatches(sample, kp1, image, kp2, mp, None)
     result = cv2.resize(result, None, fx=4, fy=4)
